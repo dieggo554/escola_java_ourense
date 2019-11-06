@@ -5,8 +5,8 @@
  */
 package com.vn.introjava;
 
-import static com.vn.introjava.DatosBasicos.*;
-import static com.vn.introjava.Ordenamiento.*;
+import static com.vn.introjava.funcionesbasicas.DatosBasicos.*;
+import static com.vn.introjava.funcionesbasicas.Ordenamiento.*;
 
 /**
  * Clase principal del proyecto Ejemplos Java
