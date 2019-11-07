@@ -38,7 +38,7 @@ public class Main {
         try {
             c = FabricaCoches.crear("Seat");
             c.mostrarEstado();
-            c = FabricaCoches.crear(null);
+//            c = FabricaCoches.crear(null); // tira excepcion
             c.mostrarEstado();
         } catch (Exception ex) {
             System.err.println(">> LOG: ");

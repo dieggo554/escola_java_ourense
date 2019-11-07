@@ -89,8 +89,11 @@ public class CocheRally extends Coche {
     // 2º, que indique que es "Coche de rally: <marca>, rozamiento, arrancado"
     @Override
     public void mostrarEstado() {
-        System.out.println("-Tipo: " + getTipo() + " - Marca - " + getMarca()
-                + ", rozamiento: " + rozamiento
-                + (isArrancado() ? ", arrancado" : ", apagado"));
+        System.out.println(toString());
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + " Rozamiento: " + getRozamiento();
     }
 }

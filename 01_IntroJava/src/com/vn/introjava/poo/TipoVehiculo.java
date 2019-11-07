@@ -14,5 +14,5 @@ package com.vn.introjava.poo;
 public enum TipoVehiculo {
     TURISMO,
     TRACTOR,
-    RALLY
+    RALLY;
 }

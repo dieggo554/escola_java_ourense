@@ -30,6 +30,15 @@ public abstract class Vehiculo {
      * Método declarado pero NO implementado (aquí)
      */
     public abstract void avanzar();         // Declaración
+
+    public void mostrarEstado() {
+        System.out.println(toString());
+    }
     
-    public abstract void mostrarEstado();
+    @Override
+    public String toString() {
+        return "Tipo: " + tipo;
+    }
+    
+    
 }

@@ -9,7 +9,7 @@ package com.vn.introjava.poo;
  *
  * @author pc
  */
-public class Coche  extends Vehiculo /* extends Object */ {
+public class Coche extends Vehiculo /* extends Object */ {
 
     /* public Coche() { 
         // constructor por defecto
@@ -25,6 +25,7 @@ public class Coche  extends Vehiculo /* extends Object */ {
         marca = "SIN MARCA";
         arrancado = false;
         setTipo(TipoVehiculo.TURISMO);
+        numRuedas = 4;
     }
 
     public Coche(String marca) {
@@ -32,6 +33,7 @@ public class Coche  extends Vehiculo /* extends Object */ {
         // el valor por defecto es 0 o equivalente, pero es recomendable definirlo
         this.arrancado = false;
         setTipo(TipoVehiculo.TURISMO);
+        numRuedas = 4;
     }
 
     public boolean arrancar() {
@@ -41,14 +43,17 @@ public class Coche  extends Vehiculo /* extends Object */ {
     }
 
     // Sobrecarga de método arrancar()
-    /** Si la posisción de la llave es 4 el coche arranca
-     *  No arranca en cualquier otro caso
+    /**
+     * Si la posisción de la llave es 4 el coche arranca No arranca en cualquier
+     * otro caso
+     *
      * @param posicionLlave puede ser un número del 1 al 4
-     * @return              si se ha arrancado devulve true
+     * @return si se ha arrancado devulve true
      */
     public boolean arrancar(int posicionLlave) { // 4 pos, la 4ª arranca
-        if (posicionLlave < 1 || posicionLlave > 4)
+        if (posicionLlave < 1 || posicionLlave > 4) {
             throw new IllegalArgumentException("La llave ha de valer de 1 a 4");
+        }
         arrancado = posicionLlave == 4 /* ? true : false*/; // Redundante
 //        if (posicionLlave == 4) {
 //            arrancado = true;
@@ -82,9 +87,7 @@ public class Coche  extends Vehiculo /* extends Object */ {
     // tener lógica
     @Override
     public void mostrarEstado() {
-        System.out.println("-Tipo: " + getTipo() + " - Marca - " + getMarca()
-                + (arrancado ? " arrancado."
-                        : " apagado"));
+        System.out.println(toString());
     }
 
     public String getMarca() {
@@ -93,18 +96,18 @@ public class Coche  extends Vehiculo /* extends Object */ {
 
     public void setMarca(String marca)
             // Avisamo a quien invoca que podríamos lanzar esta excepción
-//            throws IllegalArgumentException 
-            throws Exception
-    {
+            //            throws IllegalArgumentException 
+            throws Exception {
         // Cuando existe una variable local
         // Obliga a usar this parif (marca == null || "".equals(marca))a acceder a la variable miembro
         // con el mismo nombre
-        if (marca != null && !"".equals(marca))
+        if (marca != null && !"".equals(marca)) {
             this.marca = marca;
-        else
-        // Es común validar datos en los setters, IllegalArgumentException
+        } else // Es común validar datos en los setters, IllegalArgumentException
         // para este caso.
+        {
             throw new IllegalArgumentException("Debes asignar una marca");
+        }
     }
 
     public int getNumRuedas() {
@@ -118,5 +121,18 @@ public class Coche  extends Vehiculo /* extends Object */ {
     @Override
     public void avanzar() {
         System.out.println("Ruedo un poco");
+    }
+    
+    @Override
+    public String toString() {
+        StringBuilder cadena = new StringBuilder();
+        cadena.append(super.toString());
+        cadena.append(" Marca: ");
+        cadena.append( getMarca());
+        cadena.append(" Num. Ruedas: ");
+        cadena.append(numRuedas);
+        cadena.append(" Estado: ");
+        cadena.append((arrancado ? " encendido." : " apagado"));
+        return cadena.toString();
     }
 }

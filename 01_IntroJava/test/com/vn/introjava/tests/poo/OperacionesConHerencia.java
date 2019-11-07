@@ -91,11 +91,14 @@ public class OperacionesConHerencia {
             subaru
         };
         
-        System.out.println("*********");
+        System.out.println("----------");
         for (Vehiculo miVehiculo : misVehiculos) {
             miVehiculo.mostrarEstado();
-            miVehiculo.avanzar();
         }
-        System.out.println("*********");
+        System.out.println("----------");
+        for (Vehiculo miVehiculo : misVehiculos) {
+            System.out.println(miVehiculo);
+        }
+        System.out.println("----------");
     }
 }
