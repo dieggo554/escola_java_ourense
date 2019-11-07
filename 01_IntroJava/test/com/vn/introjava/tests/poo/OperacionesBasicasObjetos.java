@@ -6,6 +6,7 @@
 package com.vn.introjava.tests.poo;
 
 import com.vn.introjava.poo.Coche;
+import com.vn.introjava.poo.CocheRally;
 import com.vn.introjava.poo.FabricaCoches;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -85,7 +86,7 @@ public class OperacionesBasicasObjetos {
         Coche miCoche = new Coche();
         assertTrue(miCoche.arrancar());
         
-        for (int i = -1; i < 6; i++) {
+        for (int i = 1; i <= 4; i++) {
             if (i == 4) 
                 assertTrue(miCoche.arrancar(i));
              else 

@@ -9,14 +9,14 @@ package com.vn.introjava.poo;
  *
  * @author pc
  */
-public class Coche /* extends Object */ {
+public class Coche  extends Vehiculo /* extends Object */ {
 
     /* public Coche() { 
         // constructor por defecto
     } */
     private int numRuedas;
     private String marca;
-    private boolean arrancado;
+    protected boolean arrancado;
 
     // En el momento que creamos un contructor, el de por defecto
     // deja de ser implementado por Java
@@ -24,12 +24,14 @@ public class Coche /* extends Object */ {
         numRuedas = 4;
         marca = "SIN MARCA";
         arrancado = false;
+        setTipo(TipoVehiculo.TURISMO);
     }
 
     public Coche(String marca) {
         this.marca = marca;
         // el valor por defecto es 0 o equivalente, pero es recomendable definirlo
         this.arrancado = false;
+        setTipo(TipoVehiculo.TURISMO);
     }
 
     public boolean arrancar() {
@@ -39,7 +41,14 @@ public class Coche /* extends Object */ {
     }
 
     // Sobrecarga de método arrancar()
+    /** Si la posisción de la llave es 4 el coche arranca
+     *  No arranca en cualquier otro caso
+     * @param posicionLlave puede ser un número del 1 al 4
+     * @return              si se ha arrancado devulve true
+     */
     public boolean arrancar(int posicionLlave) { // 4 pos, la 4ª arranca
+        if (posicionLlave < 1 || posicionLlave > 4)
+            throw new IllegalArgumentException("La llave ha de valer de 1 a 4");
         arrancado = posicionLlave == 4 /* ? true : false*/; // Redundante
 //        if (posicionLlave == 4) {
 //            arrancado = true;
@@ -66,10 +75,14 @@ public class Coche /* extends Object */ {
         return arrancado;
     }
 
+    /**
+     * Simplemente imprime la marca y si está arrancado
+     */
     // Utilizar siempre, en la propia clase, los getter y setter: podrían
     // tener lógica
+    @Override
     public void mostrarEstado() {
-        System.out.println("Coche " + getMarca()
+        System.out.println("-Tipo: " + getTipo() + " - Marca - " + getMarca()
                 + (arrancado ? " arrancado."
                         : " apagado"));
     }
@@ -100,5 +113,10 @@ public class Coche /* extends Object */ {
 
     public boolean isArrancado() {
         return arrancado;
+    }
+
+    @Override
+    public void avanzar() {
+        System.out.println("Ruedo un poco");
     }
 }
