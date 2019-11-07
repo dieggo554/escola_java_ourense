@@ -7,6 +7,10 @@ package com.vn.introjava;
 
 import static com.vn.introjava.funcionesbasicas.DatosBasicos.*;
 import static com.vn.introjava.funcionesbasicas.Ordenamiento.*;
+import com.vn.introjava.poo.Coche;
+import com.vn.introjava.poo.FabricaCoches;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Clase principal del proyecto Ejemplos Java
@@ -25,9 +29,20 @@ public class Main {
 //        EstructurasControl.ejecutarBucles();
 //        EstructurasControl.ejecutarCondiciones();
 //        probarOperadores();
-        int[] array = { 4,2,3,1};
+//        int[] array = { 4,2,3,1};
 //        ordenarArrayConBurbuja(array);
 //        ordenarArrayConBurbujaOptimizada(array);
-        ordenarArray(array);
+//        ordenarArray(array);
+        
+        Coche c;
+        try {
+            c = FabricaCoches.crear("Seat");
+            c.mostrarEstado();
+            c = FabricaCoches.crear(null);
+            c.mostrarEstado();
+        } catch (Exception ex) {
+            System.err.println(">> LOG: ");
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
