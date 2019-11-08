@@ -5,11 +5,11 @@
  */
 package com.vn.introjava.tests.poo;
 
-import com.vn.introjava.poo.Coche;
-import com.vn.introjava.poo.CocheRally;
-import com.vn.introjava.poo.TipoVehiculo;
-import com.vn.introjava.poo.Tractor;
-import com.vn.introjava.poo.Vehiculo;
+import com.vn.introjava.poo.vehiculos.Coche;
+import com.vn.introjava.poo.vehiculos.CocheRally;
+import com.vn.introjava.poo.vehiculos.TipoVehiculo;
+import com.vn.introjava.poo.vehiculos.Tractor;
+import com.vn.introjava.poo.vehiculos.Vehiculo;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
