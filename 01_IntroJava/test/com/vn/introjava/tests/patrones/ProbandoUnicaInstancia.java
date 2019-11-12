@@ -6,6 +6,7 @@
 package com.vn.introjava.tests.patrones;
 
 import com.vn.introjava.patrones.CocheEspecialUnico;
+import com.vn.introjava.patrones.TractorSingleton;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -34,8 +35,22 @@ public class ProbandoUnicaInstancia {
     @Test
     public void intentarUnicaInsTris() throws Exception {
         CocheEspecialUnico miUnicoCoche = CocheEspecialUnico.getInstancia();
-//        CocheEspecialUnico.unicoCocheEsp = miUnicoCoche;
 //        miUnicoCoche.setMarca("UNICO COCHE 3");
         miUnicoCoche.mostrarEstado();
+    }
+    
+    @Test
+    public void intentarUnicaInsTractor() throws Exception {
+        TractorSingleton tractorUno = TractorSingleton.getInstance();
+        tractorUno.mostrarEstado();
+        TractorSingleton tractorDos = TractorSingleton.getInstance();
+        tractorDos.mostrarEstado();
+        TractorSingleton tractorTres = TractorSingleton.getInstance();
+        tractorTres.mostrarEstado();
+        TractorSingleton tractorCuatro = TractorSingleton.getInstance();
+        tractorCuatro.mostrarEstado();
+        TractorSingleton tractorCinco = TractorSingleton.getInstance();
+        tractorCinco.mostrarEstado();
+        
     }
 }

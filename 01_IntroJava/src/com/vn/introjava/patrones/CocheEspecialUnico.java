@@ -6,26 +6,27 @@
 package com.vn.introjava.patrones;
 
 import com.vn.introjava.poo.vehiculos.Coche;
+import java.util.Random;
 
 /**
  *
  * @author pc
  */
 public class CocheEspecialUnico extends Coche {
-    
-    public static CocheEspecialUnico unicoCocheEsp;
+
+    // Debe ser privada para que no se pueda poner a null, lo que crearia una
+    // nueva estancia
+    private static CocheEspecialUnico unicoCocheEsp;
 
     private CocheEspecialUnico() {
         super();
     }
-    
+
     public static CocheEspecialUnico getInstancia() throws Exception {
-        if (CocheEspecialUnico.unicoCocheEsp != null) {
-            return CocheEspecialUnico.unicoCocheEsp;
-        } else {
+        if (CocheEspecialUnico.unicoCocheEsp == null) {
             CocheEspecialUnico.unicoCocheEsp = new CocheEspecialUnico();
-            CocheEspecialUnico.unicoCocheEsp.setMarca("UNICO COCHE 1");
-            return CocheEspecialUnico.unicoCocheEsp;
+            CocheEspecialUnico.unicoCocheEsp.setMarca("UNICO COCHE " + (new Random().nextInt()));
         }
+        return CocheEspecialUnico.unicoCocheEsp;
     }
 }
