@@ -9,6 +9,8 @@ import com.vn.introjava.poo.vehiculos.Coche;
 import com.vn.introjava.poo.vehiculos.FabricaCoches;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -23,12 +25,14 @@ public class DaoCocheList implements IDaoCoche {
     }
     
     @Override
-    public void crear(Coche objeto) {
-        listaCoches.add(objeto);
+    public void crear(Coche cocheNuevo) {
+        listaCoches.add(cocheNuevo);
     }
     
     public void crear(String marca) throws Exception {
-        listaCoches.add(FabricaCoches.crear(marca));
+        crear(FabricaCoches.crear(marca));
+        // Es lo mismo
+//        listaCoches.add(FabricaCoches.crear(marca));
     }
     @Override
     public Coche obtenerPorIndice(int index) {
@@ -43,5 +47,25 @@ public class DaoCocheList implements IDaoCoche {
             }
         }
         return null;
+    }
+
+    @Override
+    public void modificar(int index, Coche cocheExistente) {
+        try {
+            Coche coche = listaCoches.get(index);
+            coche.setMarca(cocheExistente.getMarca());
+        } catch (Exception ex) {
+            Logger.getLogger(DaoCocheList.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public void delete(int index) {
+        listaCoches.remove(index);
+    }
+
+    @Override
+    public void delete(Coche cocheExistente) {
+        listaCoches.remove(cocheExistente);
     }
 }

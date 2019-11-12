@@ -53,4 +53,21 @@ public class DaoUsuarioList implements IDaoUsuario {
     public Usuario obtenerPorIndice(int index) {
         return listaUsuarios.get(index);
     }
+
+    @Override
+    public void modificar(int index, Usuario usuarioExistente) {
+        Usuario usuario = listaUsuarios.get(index);
+        usuario.setEdad(usuarioExistente.getEdad());
+        usuario.setNombre(usuarioExistente.getNombre());
+    }
+
+    @Override
+    public void delete(int index) {
+        listaUsuarios.remove(index);
+    }
+
+    @Override
+    public void delete(Usuario ursExistente) {
+        listaUsuarios.remove(ursExistente);
+    }
 }

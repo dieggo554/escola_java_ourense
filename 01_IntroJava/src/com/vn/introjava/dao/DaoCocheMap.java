@@ -29,15 +29,17 @@ public class DaoCocheMap implements IDaoCoche {
     }
     
     @Override
-    public void crear(Coche objeto) {
-        mapaCoches.put(objeto.getMarca(), objeto);
-        indiceMapaCoches.put(ultimoIndex++, objeto);
+    public void crear(Coche cocheNuevo) {
+        mapaCoches.put(cocheNuevo.getMarca(), cocheNuevo);
+        indiceMapaCoches.put(ultimoIndex++, cocheNuevo);
     }
 
     public void crear(String marca) throws Exception {
-        Coche coche = FabricaCoches.crear(marca);
-        mapaCoches.put(marca, coche);
-        indiceMapaCoches.put(ultimoIndex++, coche);
+        crear(FabricaCoches.crear(marca));
+//        Mejoramos:
+//        Coche coche = FabricaCoches.crear(marca);
+//        mapaCoches.put(marca, coche);
+//        indiceMapaCoches.put(ultimoIndex++, coche);
     }
 
     @Override
@@ -48,5 +50,13 @@ public class DaoCocheMap implements IDaoCoche {
     @Override
     public Coche obtenerPorIndice(int index) {
         return indiceMapaCoches.get(index);
+    }
+
+    @Override
+    public void modificar(int index, Coche cocheExistente) {
+        Coche cocheViejo = indiceMapaCoches.get(index);
+        mapaCoches.remove(cocheViejo.getMarca());
+        mapaCoches.put(cocheExistente.getMarca(), cocheExistente);
+        indiceMapaCoches.put(index, cocheExistente);
     }
 }

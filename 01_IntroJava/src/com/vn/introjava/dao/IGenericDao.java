@@ -13,4 +13,7 @@ public interface IGenericDao<T> {
     
     void crear(T objeto);
     T obtenerPorIndice(int index);
+    void modificar(int index, T objExistente);
+    void delete(int index);
+    void delete(T objExistente);
 }
