@@ -59,4 +59,26 @@ public class DaoCocheMap implements IDaoCoche {
         mapaCoches.put(cocheExistente.getMarca(), cocheExistente);
         indiceMapaCoches.put(index, cocheExistente);
     }
+
+    @Override
+    public void delete(int index) {
+        delete(index, obtenerPorIndice(index).getMarca());
+    }
+
+    @Override
+    public void delete(Coche objExistente) {
+        int key = -1;
+        for (Map.Entry<Integer, Coche> entry : indiceMapaCoches.entrySet()) {
+            if (entry.getValue().getMarca().equals(objExistente.getMarca())) {
+                key = entry.getKey();
+                break;
+            }
+        }
+        delete(key, objExistente.getMarca());
+    }
+    
+    private void delete(int index, String marca) {
+        mapaCoches.remove(marca);
+        indiceMapaCoches.remove(index);
+    }
 }
