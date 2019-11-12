@@ -5,14 +5,21 @@
  */
 package com.vn.introjava.dao;
 
+import java.io.Serializable;
+
 /**
  *
  * @author pc
  */
-public interface IDaoUsuario {
+public interface IDaoUsuario extends IGenericDao<Usuario> {
+/* Se puede sobreescribir, pero no es necesario
+    @Override
+    void crear(Usuario nuevoUsuario);
     
-    void crear(String nombre, int edad);
-    Usuario obtenerPorNombre(String nombre);
-    Usuario obtenerPorEdad(int edad);
+    @Override
     Usuario obtenerPorIndice(int index);
+*/
+    Usuario obtenerPorNombre(String nombre);
+
+    Usuario obtenerPorEdad(int edad);
 }

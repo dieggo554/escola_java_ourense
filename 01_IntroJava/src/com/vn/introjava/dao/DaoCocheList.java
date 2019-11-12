@@ -23,6 +23,10 @@ public class DaoCocheList implements IDaoCoche {
     }
     
     @Override
+    public void crear(Coche objeto) {
+        listaCoches.add(objeto);
+    }
+    
     public void crear(String marca) throws Exception {
         listaCoches.add(FabricaCoches.crear(marca));
     }

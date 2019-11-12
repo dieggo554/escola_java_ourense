@@ -21,6 +21,10 @@ public class DaoUsuarioList implements IDaoUsuario {
     }
 
     @Override
+    public void crear(Usuario nuevoUsuario) {
+        listaUsuarios.add(nuevoUsuario);
+    }
+    
     public void crear(String nombre, int edad) {
         listaUsuarios.add(new Usuario(nombre, edad));
     }

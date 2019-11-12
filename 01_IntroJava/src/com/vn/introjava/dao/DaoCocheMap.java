@@ -27,8 +27,13 @@ public class DaoCocheMap implements IDaoCoche {
         indiceMapaCoches = new HashMap<>();
         ultimoIndex = 0;
     }
-
+    
     @Override
+    public void crear(Coche objeto) {
+        mapaCoches.put(objeto.getMarca(), objeto);
+        indiceMapaCoches.put(ultimoIndex++, objeto);
+    }
+
     public void crear(String marca) throws Exception {
         Coche coche = FabricaCoches.crear(marca);
         mapaCoches.put(marca, coche);

@@ -5,13 +5,12 @@
  */
 package com.vn.introjava.dao;
 
-import com.vn.introjava.poo.vehiculos.Coche;
-
 /**
  *
  * @author pc
  */
-public interface IDaoCoche extends IGenericDao<Coche> {
-
-    Coche obtenerPorMarca(String marca);
+public interface IGenericDao<T> {
+    
+    void crear(T objeto);
+    T obtenerPorIndice(int index);
 }

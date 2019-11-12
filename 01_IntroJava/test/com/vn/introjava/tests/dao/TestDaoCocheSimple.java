@@ -8,6 +8,8 @@ package com.vn.introjava.tests.dao;
 import com.vn.introjava.dao.DaoCocheList;
 import com.vn.introjava.dao.DaoCocheMap;
 import com.vn.introjava.dao.IDaoCoche;
+import com.vn.introjava.poo.vehiculos.Coche;
+import com.vn.introjava.poo.vehiculos.FabricaCoches;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -28,9 +30,11 @@ public class TestDaoCocheSimple {
     }
     
     void testInterfaceDaoCoche (IDaoCoche daoCoche) throws Exception {
-        daoCoche.crear("Coche A");
-        daoCoche.crear("Coche B");
-        daoCoche.crear("Coche C");
+        // Este método ya no está en IDaoCoche, solo en DaoCocheList/DaoCocheMap
+//        daoCoche.crear("Coche A");
+        daoCoche.crear(FabricaCoches.crear("Coche A"));
+        daoCoche.crear(FabricaCoches.crear("Coche B"));
+        daoCoche.crear(FabricaCoches.crear("Coche C"));
         Assert.assertEquals(daoCoche.obtenerPorIndice(1).getMarca(), "Coche B");
         Assert.assertEquals(daoCoche.obtenerPorMarca("Coche C").getMarca(), "Coche C");
     }
