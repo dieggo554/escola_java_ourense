@@ -8,12 +8,13 @@ package com.vn.introjava.dao;
 /**
  *
  * @author pc
+ * @param <T>
  */
 public interface IGenericDao<T> {
     
-    void crear(T objeto);
+    T crear(T objeto);
     T obtenerPorIndice(int index);
-    void modificar(int index, T objExistente);
-    void delete(int index);
-    void delete(T objExistente);
+    T modificar(int index, T objExistente);
+    void eliminar(int index);
+    void eliminar(T objExistente);
 }

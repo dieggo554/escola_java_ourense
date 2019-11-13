@@ -19,6 +19,8 @@ public interface IDaoUsuario extends IGenericDao<Usuario> {
     @Override
     Usuario obtenerPorIndice(int index);
 */
+    Usuario crear(String nombre, int edad);
+    
     Usuario obtenerPorNombre(String nombre);
 
     Usuario obtenerPorEdad(int edad);

@@ -11,6 +11,7 @@ import com.vn.introjava.dao.IDaoCoche;
 import com.vn.introjava.poo.vehiculos.Coche;
 import com.vn.introjava.poo.vehiculos.FabricaCoches;
 import org.junit.Assert;
+import static org.junit.Assert.fail;
 import org.junit.Test;
 
 /**
@@ -30,12 +31,31 @@ public class TestDaoCocheSimple {
     }
     
     void testInterfaceDaoCoche (IDaoCoche daoCoche) throws Exception {
-        // Este método ya no está en IDaoCoche, solo en DaoCocheList/DaoCocheMap
-//        daoCoche.crear("Coche A");
-        daoCoche.crear(FabricaCoches.crear("Coche A"));
-        daoCoche.crear(FabricaCoches.crear("Coche B"));
-        daoCoche.crear(FabricaCoches.crear("Coche C"));
-        Assert.assertEquals(daoCoche.obtenerPorIndice(1).getMarca(), "Coche B");
-        Assert.assertEquals(daoCoche.obtenerPorMarca("Coche C").getMarca(), "Coche C");
+        daoCoche.crear("Coche A");
+        daoCoche.crear("Coche B");
+        Coche cc = daoCoche.crear("Coche C");
+        
+        Assert.assertEquals("Coche B", daoCoche.obtenerPorIndice(1).getMarca());
+        Assert.assertEquals("Coche C", daoCoche.obtenerPorMarca("Coche C").getMarca());
+        Assert.assertEquals("Coche C", daoCoche.obtenerPorIndice(2).getMarca());
+        
+        Coche modificar = new Coche("Coche B ahora X");
+        daoCoche.modificar(1, modificar);
+        Assert.assertEquals("Coche B ahora X", daoCoche.obtenerPorIndice(1).getMarca());
+        
+        modificar = new Coche("Coche C");
+        modificar.arrancar();
+        daoCoche.modificar(2, modificar); // El nº2 es cc, debe ser arrancado aquí dentro
+        Assert.assertEquals(modificar.isArrancado(), cc.isArrancado());
+        
+        daoCoche.eliminar(1); // Elimina el B
+        daoCoche.eliminar(daoCoche.obtenerPorMarca("Coche A"));
+        Assert.assertNull(daoCoche.obtenerPorIndice(1));
+        Assert.assertNull(daoCoche.obtenerPorMarca("Coche A"));
+        
+        if (daoCoche instanceof DaoCocheList)
+            Assert.assertEquals("Coche C", daoCoche.obtenerPorIndice(0).getMarca()); // El índice baja
+        else
+            Assert.assertEquals("Coche C", daoCoche.obtenerPorIndice(2).getMarca()); // El ínidice no cambia
     }
 }

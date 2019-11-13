@@ -20,12 +20,24 @@ public class TestDaoUsuarioSimple {
     @Test
     public void testDaoUsuarioList() throws Exception {
         IDaoUsuario daoUsuario = new DaoUsuarioList();
-        daoUsuario.crear(new Usuario("Usuario A", 10));
-        daoUsuario.crear(new Usuario("Usuario B", 20));
-        daoUsuario.crear(new Usuario("Usuario C", 30));
-        assertEquals(daoUsuario.obtenerPorIndice(2).getNombre(), "Usuario C");
-        assertEquals(daoUsuario.obtenerPorIndice(1).getEdad(), 20);
-        assertEquals(daoUsuario.obtenerPorEdad(20).getNombre(), "Usuario B");
-        assertEquals(daoUsuario.obtenerPorIndice(0).getNombre(), "Usuario A");
+        testDaoUsuarioList(daoUsuario);
+    }
+    
+    public void testDaoUsuarioList(IDaoUsuario daoUsuario) throws Exception {
+        daoUsuario.crear(new Usuario("Juan", 30));
+        daoUsuario.crear(new Usuario("Ana", 31));
+        daoUsuario.crear(new Usuario("Bea", 32));
+        daoUsuario.crear(new Usuario("Luis", 29));
+        assertEquals("Ana", daoUsuario.obtenerPorIndice(1).getNombre());
+        assertEquals(32, daoUsuario.obtenerPorNombre("Bea").getEdad());
+        
+        daoUsuario.modificar(1, new Usuario("Ana Modif", 21));
+        assertEquals("Ana Modif", daoUsuario.obtenerPorIndice(1).getNombre());
+        assertEquals(21, daoUsuario.obtenerPorIndice(1).getEdad());
+        
+        daoUsuario.eliminar(daoUsuario.obtenerPorIndice(0));
+        daoUsuario.eliminar(1);
+        // El 1 ahora es Luis
+        assertEquals("Luis", daoUsuario.obtenerPorIndice(1).getNombre());
     }
 }

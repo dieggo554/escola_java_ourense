@@ -21,12 +21,14 @@ public class DaoUsuarioList implements IDaoUsuario {
     }
 
     @Override
-    public void crear(Usuario nuevoUsuario) {
+    public Usuario crear(Usuario nuevoUsuario) {
         listaUsuarios.add(nuevoUsuario);
+        return nuevoUsuario;
     }
     
-    public void crear(String nombre, int edad) {
-        listaUsuarios.add(new Usuario(nombre, edad));
+    @Override
+    public Usuario crear(String nombre, int edad) {
+        return crear(new Usuario(nombre, edad));
     }
 
     @Override
@@ -51,23 +53,27 @@ public class DaoUsuarioList implements IDaoUsuario {
 
     @Override
     public Usuario obtenerPorIndice(int index) {
-        return listaUsuarios.get(index);
+        if (index < listaUsuarios.size())
+            return listaUsuarios.get(index);
+        else
+            return null;
     }
 
     @Override
-    public void modificar(int index, Usuario usuarioExistente) {
+    public Usuario modificar(int index, Usuario usuarioExistente) {
         Usuario usuario = listaUsuarios.get(index);
         usuario.setEdad(usuarioExistente.getEdad());
         usuario.setNombre(usuarioExistente.getNombre());
+        return usuario;
     }
 
     @Override
-    public void delete(int index) {
+    public void eliminar(int index) {
         listaUsuarios.remove(index);
     }
 
     @Override
-    public void delete(Usuario ursExistente) {
+    public void eliminar(Usuario ursExistente) {
         listaUsuarios.remove(ursExistente);
     }
 }

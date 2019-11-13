@@ -122,13 +122,13 @@ public class Coche extends Vehiculo /* extends Object */ {
     public void avanzar() {
         System.out.println("Ruedo un poco");
     }
-    
+
     @Override
     public String toString() {
         StringBuilder cadena = new StringBuilder();
         cadena.append(super.toString());
         cadena.append(" Marca: ");
-        cadena.append( getMarca());
+        cadena.append(getMarca());
         cadena.append(" Num. Ruedas: ");
         cadena.append(numRuedas);
         cadena.append(" Estado: ");
@@ -140,5 +140,17 @@ public class Coche extends Vehiculo /* extends Object */ {
     public void mover(float metros) {
         avanzar();
         System.out.println(metros + " metros");
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Coche) {
+            Coche coche = (Coche) obj;
+            if (coche.getMarca().equals(this.getMarca())
+                    && coche.getTipo().equals(this.getTipo())) {
+                return true;
+            }
+        }
+        return false;
     }
 }

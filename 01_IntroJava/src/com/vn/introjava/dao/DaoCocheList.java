@@ -25,18 +25,23 @@ public class DaoCocheList implements IDaoCoche {
     }
     
     @Override
-    public void crear(Coche cocheNuevo) {
+    public Coche crear(Coche cocheNuevo) {
         listaCoches.add(cocheNuevo);
+        return cocheNuevo;
     }
     
-    public void crear(String marca) throws Exception {
-        crear(FabricaCoches.crear(marca));
+    @Override
+    public Coche crear(String marca) throws Exception {
+        return crear(FabricaCoches.crear(marca));
         // Es lo mismo
 //        listaCoches.add(FabricaCoches.crear(marca));
     }
     @Override
     public Coche obtenerPorIndice(int index) {
-        return listaCoches.get(index);
+        if (index < listaCoches.size())
+            return listaCoches.get(index);
+        else
+            return null;
     }
     
     @Override
@@ -50,22 +55,33 @@ public class DaoCocheList implements IDaoCoche {
     }
 
     @Override
-    public void modificar(int index, Coche cocheExistente) {
+    public Coche modificar(int index, Coche cocheConDatosNuevos) {
         try {
             Coche coche = listaCoches.get(index);
-            coche.setMarca(cocheExistente.getMarca());
+            coche.setMarca(cocheConDatosNuevos.getMarca());
+            coche.setTipo(cocheConDatosNuevos.getTipo());
+            coche.arrancar(cocheConDatosNuevos.isArrancado() ? 4 : 1);
+            return coche;
         } catch (Exception ex) {
             Logger.getLogger(DaoCocheList.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
     }
+    
+//    Este substituye, no modifica
+//    @Override
+//    public void modificar(int index, Coche cocheExistente) {
+//        listaCoches.set(index, cocheExistente);
+//    }
 
     @Override
-    public void delete(int index) {
+    public void eliminar(int index) {
         listaCoches.remove(index);
+//        eliminar(obtenerPorIndice(index)); // mas lento pero puede usarse para otros casos
     }
 
     @Override
-    public void delete(Coche cocheExistente) {
+    public void eliminar(Coche cocheExistente) {
         listaCoches.remove(cocheExistente);
     }
 }
