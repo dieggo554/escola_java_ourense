@@ -55,14 +55,17 @@ public class DaoCocheMap implements IDaoCoche {
         return indiceMapaCoches.get(index);
     }
 
-    // No cambiamos el indice al modificar, podría dar problemas
     @Override
     public Coche modificar(int index, Coche cocheExistente) {
         try {
             Coche cocheViejoIndex = indiceMapaCoches.get(index);
+            mapaCoches.remove(obtenerPorIndice(index).getMarca());
+            mapaCoches.put(cocheExistente.getMarca(), cocheExistente);
+            
             cocheViejoIndex.arrancar(cocheExistente.isArrancado() ? 4 : 1);
             cocheViejoIndex.setMarca(cocheExistente.getMarca());
-//            cocheViejoIndex.setTipo(cocheExistente.getTipo());
+            cocheViejoIndex.setTipo(cocheExistente.getTipo());
+            
             return cocheViejoIndex;
         } catch (Exception ex) {
             Logger.getLogger(DaoCocheMap.class.getName()).log(Level.SEVERE, null, ex);
