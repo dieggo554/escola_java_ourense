@@ -10,8 +10,37 @@ package com.vn.concurrencia;
  * @author pc
  */
 public class Main {
-    public static void main(String[] args) {
+    
+    public static final int NUM_HILOS = 10000;
+    public static final int NUM_ITERACIONES = 100;
+    
+    public static void main(String[] args) throws InterruptedException {
         // Con dos hilos es igual a no crear hilos, con más, es más LENTO (PC Clase)
+//        usarHilosSencillos();
+        usarArrayHilos(NUM_HILOS, NUM_ITERACIONES);
+    }
+    
+    private static void usarArrayHilos(int numHilos, int numIteraciones) throws InterruptedException {
+        SetHilos arrayHilos = new SetHilos();
+        
+        long timeInt = System.currentTimeMillis();
+        arrayHilos.crearHilos(numHilos, numIteraciones);
+        String creacionHilos = calcularTiempo(timeInt, "Creación hilos ha tardado: ");
+        
+        timeInt = System.currentTimeMillis();
+        arrayHilos.ejecutarConHilos();
+        String conHilos = calcularTiempo(timeInt, "Ejecución con hilos ha tardado: ");
+        
+        
+        timeInt = System.currentTimeMillis();
+        arrayHilos.ejecutarSinHilos();
+        String sinHilos = calcularTiempo(timeInt, "Ejecución sin hilos ha tardado: ");
+        
+        
+        System.out.println(creacionHilos + "\n" + sinHilos + "\n" + conHilos);
+    }
+
+    public static void usarHilosSencillos() {
         HilosSencillos hs = new HilosSencillos();
         
         long timeInt = System.currentTimeMillis();
