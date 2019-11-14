@@ -24,13 +24,13 @@ public class Productor extends Thread {
     public void run() {
         for (int i = 10; i >= 1; i--) {
             int valor = i * 100;
-            System.out.println("Productor. PUT: " + valor);
+            contenedor.put(valor);
             
-//            try {
-//                Thread.sleep((int) (Math.random() * 1000));
-//            } catch (InterruptedException ex) {
-//                Logger.getLogger(Productor.class.getName()).log(Level.SEVERE, null, ex);
-//            }
+            try {
+                Thread.sleep((int) (Math.random() * 3000) + 1000);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Productor.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 }
