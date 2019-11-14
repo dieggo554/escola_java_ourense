@@ -15,7 +15,7 @@ public class Test_ProducTorConsumidor {
         Contenedor c = new Contenedor();
         Productor produce = new Productor(c);
         Consumidor consume = new Consumidor(c);
-        produce.producir();
-        consume.consumir();
+        produce.start();
+        consume.start();
     }
 }
