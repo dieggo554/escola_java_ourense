@@ -7,6 +7,7 @@ package com.vn.concurrencia;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 /**
  *
@@ -14,37 +15,68 @@ import java.util.Set;
  */
 public class SetHilos {
 
-    private final Set<Thread> HILOS = new HashSet<>();
+    private final Set<Runnable> HILOS_AB = new HashSet<>();
+    // No se puede usar por que una vez terminados los hilos no se pueden
+    // reutilizar, debemos crearlos nuevamente
+//    private final Set<Thread> THREADS = new HashSet<>();
 
     public void crearHilos(int numHilos, int numIteraciones) {
         for (int i = 0; i < numHilos; i++)
-            HILOS.add(new Thread(new Hilo(i, numIteraciones)));
+            HILOS_AB.add(new HiloA(i, numIteraciones));
     }
 
     public void ejecutarConHilos() throws InterruptedException {
-        for (Thread hilo : HILOS) 
+        Set<Thread> threads = new HashSet<>();
+        for (Runnable hiloAB : HILOS_AB) 
+            threads.add(new Thread(hiloAB));
+        
+        for (Thread hilo : threads) 
             hilo.start();
         
-        // Esperamos a que terminen todos los hilos
-//        for (Thread hilo : HILOS) 
+        // Une la ejecución al hilo principal
+//        for (Thread hilo : threads) 
 //            hilo.join();
 
-        for (Thread thread : HILOS)
+        for (Thread thread : threads)
             while (thread.isAlive());
         
     }
 
     public void ejecutarSinHilos() {
-        for (Thread hilo : HILOS)
+        for (Runnable hilo : HILOS_AB)
             hilo.run();
     }
 
-    class Hilo implements Runnable {
+    class HiloA implements Runnable {
 
         private int id;
         private int iteraciones;
 
-        public Hilo(int id, int iteraciones) {
+        public HiloA(int id, int iteraciones) {
+            this.id = id;
+            this.iteraciones = iteraciones;
+        }
+
+        @Override
+        public void run() {
+                for (int i = 0; i < iteraciones; i++) {
+                    if (i % 10 == 0) 
+                        System.out.println(this + " iteración " + i);
+            }
+        }
+
+        @Override
+        public String toString() {
+            return "Soy el hilo " + id;
+        }
+    }
+    
+    class HiloB implements Runnable {
+
+        private int id;
+        private int iteraciones;
+
+        public HiloB(int id, int iteraciones) {
             this.id = id;
             this.iteraciones = iteraciones;
         }
