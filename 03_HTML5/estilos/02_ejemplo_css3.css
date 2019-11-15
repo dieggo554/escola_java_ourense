@@ -1,0 +1,76 @@
+/* selector { 
+  propiedad_1:....;
+  propiedad_2:....
+} */
+/* selector de etiqueta */
+body {
+  background-color: #ddeeff;
+  /* RGB red green blue */
+}
+header {
+  background-color: rgb(182, 202, 221);
+}
+/* selector varios */
+h1,h2,h3 {
+  background-color: rgb(162, 200, 233);
+  ;
+}
+/* section descendientes de article */
+article section {
+  margin: 20px;
+  background-color: red;
+}
+/* section descendientes directos de article */
+article>section {
+  margin: 20px;
+  height: 25%;
+  background-color: red;
+}
+a {
+  color: #ffffff;
+}
+/* '.' selector clase clase azul chillon */
+.azul-chillon {
+  width: 50px; /* 50 pixeles */
+  background-color: blue;
+}
+/* '#' selector id */
+#enlace-menu, #enlace-css {
+  color: red;
+}
+/* Seudoclase */
+a:hover {
+  font-size: 30px;
+  background-color: yellow;
+}
+.elemento-menu {
+  display: inline; /* display: forma de mostrar, none para NO mostrar */
+}
+.titulo {
+  position: relative;
+  left: 5px;
+  top: 5px;
+  display: inline-block;
+}
+.marco-colocado {
+  display: block;
+  width: 200px;
+}
+.articulo {
+  border: solid black;
+}
+/* Media queries, condicion para seleccionar qué estilos se aplican a qué dispositivos */
+@media screen and (max-width: 992px) {
+  article section {
+    width: 40%;
+    display: inline-block;
+    border: solid burlywood;
+  }
+}
+@media screen and (min-width: 991px) {
+  article section {
+    width: 80%;
+    display: inline-block;
+    border: solid blue;
+  }
+}

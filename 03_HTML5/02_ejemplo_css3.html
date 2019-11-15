@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <!-- Dejar aqui los estilos es una mala práctica, deben estar en el arhivo.css -->
+  <style>
+    /* '*' selector universal */
+    * {
+      margin: 0px;
+      padding: 0px;
+    }
+  </style>
+  <link rel="stylesheet" href="estilos/02_ejemplo_css3.css"/>
+</head>
+
+<body>
+  <header>
+    <img src="images/acme.jpg" style="width: 100px; height: 100px;" alt="Texto alternativo" />
+    <h1 class="titulo">Título de la web</h1>
+
+    <nav>
+      <ul>
+        <!-- Unordered List -->
+        <li class="elemento-menu"><a id="enlace-menu" name="enlace-menu" href="01_estructura_html5.html">Menú
+            principal</a></li>
+        <li class="elemento-menu"><a id="enlace-css" href="02_ejemplo_css3.html">Ejemplos CSS</a></li>
+        <li class="elemento-menu"><a href="03_formularios.html">Formularios</a></li>
+        <li class="elemento-menu"><a href="04_ejemplos_js.html">Webs dinámicas con JS</a></li>
+      </ul>
+    </nav>
+  </header>
+  <nav>Otro menú</nav>
+  <section class="marco-colocado">
+    <!-- Los encabezado no se deben usar para el estilo,
+			si no por el contenido (importancia semántica) -->
+    <h2>Encabezado nivel 2, como título secundario</h2>
+    <h3>Encabezado nivel 3, otros</h3>
+    <article class="articulo marco-colocado">
+      <h4 class="azul-chillon marco-colocado">Aquí iría un artículo</h4>
+      Con el texto que sea bla bla bla... Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit iste blanditiis
+      voluptas maxime reiciendis totam obcaecati alias sed. Quas illum aliquid tenetur soluta possimus pariatur eaque
+      vero sint harum a?
+    </article>
+    <article class="articulo marco-colocado">
+      <h4>Aquí otro artículo</h4>
+      Con otro texto que sea bla bla bla... Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti sunt
+      voluptatem itaque, molestias officiis eaque quidem tenetur autem quae, unde odio beatae alias dolore eos iusto
+      dignissimos vel asperiores suscipit.
+      <section class=".marco-colocado">Una parte del artículo</section>
+      <section>
+        Otra del artículo. Lorem ipsum dolor sit amet consectetur adipisicing elit. Error eaque vel, veritatis eos
+        deleniti adipisci laudantium, aspernatur, officiis illum id tempora eveniet perspiciatis ducimus laborum
+        provident consequatur alias omnis. Accusamus.
+      </section>
+      <video src="images/video.mp4" controls="true">
+        <!-- Poniendo la etiqueta controls ya vamos los controles,
+				pero ponemos controls="true" para cumplir con XHTML -->
+      </video>
+    </article>
+    <table>
+      <tr>
+        <!-- TR para cada una de las filas -->
+        <th class="azul-chillon">Nombre</th> <!-- TH para las cabeceras de las columnas -->
+        <th>Apellidos</th>
+        <th>Edad</th>
+        <th>Contacto</th>
+      </tr>
+      <tr>
+        <td>Ana</td> <!-- TD para cada una de las celdas de las columnas -->
+        <td>Pérez</td>
+        <td>40</td>
+        <td><a href="mailto://ana.perez@vn.com">Enviar email</a></td>
+      </tr>
+      <tr>
+        <td>Juan</td>
+        <td>Gómez</td>
+        <td>41</td>
+        <td><a href="tel://910001122">Llamar por teléfono</a></td>
+      </tr>
+    </table>
+  </section>
+  <aside>
+    <p>Típico submenú con enlaces de interés</p>
+    <ul>
+      <li><a href="https://www.w3schools.com/">https://www.w3schools.com</a></li>
+      <li><a href="https://developer.mozilla.org/en-US/">Mozilla Developer Network</a></li>
+    </ul>
+  </aside>
+  <footer>
+    Pié de página
+    <nav>
+      <ul>
+        <li>Enlaces a RR.SS.</li>
+      </ul>
+    </nav>
+    <address>Avenida Buenos Aires, 40. tu ru rú</address>
+  </footer>
+</body>
+
+</html>
