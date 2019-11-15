@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Estructura típica de HTML5</title>
+</head>
+
+<body>
+	<header>
+		<img src="images/acme.jpg" style="width: 20%; height: 20%;" alt="Texto alternativo" />
+		<h1>Título de la web</h1>
+
+		<nav>
+			<ul>
+				<!-- Unordered List -->
+				<li><a href="01_estructura_html5.html">Menú principal</a></li>
+				<li><a href="02_ejemplo_css3.html">Ejemplos CSS</a></li>
+				<li><a href="03_formularios.html">Formularios</a></li>
+				<li><a href="04_ejemplos_js.html">Webs dinámicas con JS</a></li>
+			</ul>
+		</nav>
+	</header>
+	<nav>Otro menú</nav>
+	<section>
+		<!-- Los encabezado no se deben usar para el estilo,
+			si no por el contenido (importancia semántica) -->
+		<h2>Encabezado nivel 2, como título secundario</h2>
+		<h3>Encabezado nivel 3, otros</h3>
+		<article>
+			<h4>Aquí iría un artículo</h4>
+			Con el texto que sea bla bla bla...
+		</article>
+		<article>
+			<h4>Aquí otro artículo</h4>
+			Con otro texto que sea bla bla bla...
+			<section>Una parte del artículo</section>
+			<section>Otra del artículo</section>
+			<video src="images/video.mp4" controls="true">
+				<!-- Poniendo la etiqueta controls ya vamos los controles,
+				pero ponemos controls="true" para cumplir con XHTML -->
+			</video>
+		</article>
+		<table>
+			<tr> <!-- TR para cada una de las filas -->
+				<th>Nombre</th> <!-- TH para las cabeceras de las columnas -->
+				<th>Apellidos</th>
+				<th>Edad</th>
+				<th>Contacto</th>
+			</tr>
+			<tr>
+				<td>Ana</td>  <!-- TD para cada una de las celdas de las columnas -->
+				<td>Pérez</td>
+				<td>40</td>
+				<td><a href="mailto://ana.perez@vn.com">Enviar email</a></td>
+			</tr>
+			<tr>
+				<td>Juan</td>
+				<td>Gómez</td>
+				<td>41</td>
+				<td><a href="tel://910001122">Llamar por teléfono</a></td>
+			</tr>
+		</table>
+	</section>
+	<aside>
+		<p>Típico submenú con enlaces de interés</p>
+		<ul>
+			<li><a href="https://www.w3schools.com/">https://www.w3schools.com</a></li>
+			<li><a href="https://developer.mozilla.org/en-US/">Mozilla Developer Network</a></li>
+		</ul>
+	</aside>
+	<footer>
+		Pié de página
+		<nav><ul><li>Enlaces a RR.SS.</li></ul></nav>
+		<address>Avenida Buenos Aires, 40. tu ru rú</address>
+	</footer>
+</body>
+
+</html>
