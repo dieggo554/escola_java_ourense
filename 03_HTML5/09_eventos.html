@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <!-- Mejor los controles en un DIV -->
+  <div id="componente_eventos">
+    <label>Evento con listener: </label>
+    <input id="input_listo" size="100" />
+    <input id="btn_listo" type="button" value="Pulsame"/>
+    <div id="infor_evento_listo"></div>
+  </div>
+  <!-- Por separado también debe funcionar -->
+  <label>Otro evento con listener: </label>
+  <input id="input_otro" size="100" />
+  <input id="btn_otro" type="button" value="Pulsa este otro"/>
+  <div id="infor_evento_otro"></div>
+  <script src="js/09_eventos_class.js"></script>
+  <script>
+    // espera a que la página esté cargada para ejecutar
+    // debería estar en otro fichero (en este caso es poco código)
+    window.addEventListener("load", function () {
+      let gestorEvListo = new GestorEventosES5(
+        "input_listo",
+        "btn_listo",
+        "infor_evento_listo");
+
+      let gestorEvOtro = new GestorEventosES5(
+        "input_otro",
+        "btn_otro",
+        "infor_evento_otro");
+    })
+  </script>
+
+</body>
+
+</html>
