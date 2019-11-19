@@ -9,50 +9,89 @@
 </head>
 
 <body>
-  <label>Evento con listener: </label>
-  <input id="input_listo" size="100" />
-  <input id="btn_listo" type="button" />
-  <div id="infor_evento"></div>
-  <br />
-  <br />
-  <label>Otro evento con listener: </label>
-  <input id="input_listo_dos" size="100" />
-  <input id="btn_listo_dos" type="button" />
-  <div id="infor_evento_dos"></div>
-  <br />
+  <div id="componente_eventos">
+    <label>Evento con listener: </label>
+    <input id="input_listo" class="btn1" size="100" />
+    <input id="btn_listo" class="btn1" type="button" />
+    <div id="infor_evento" class="btn1"></div>
+    <br />
+  </div>
+  <div id="componente_eventos_dos">
+    <label>Otro evento con listener: </label>
+    <input id="input_listo_dos" class="btn2" size="100" />
+    <input id="btn_listo_dos" class="btn2" type="button" />
+    <div id="infor_evento_dos" class="btn2"></div>
+    <br />
+  </div>
   <script>
     btn_listo.value = "Pulsa, listillo/a";
     // Forma standard de capturar un evento
-    btn_listo.addEventListener("click", funCllbkAlPulsar);
+    // btn_listo.addEventListener("click", funCllbkAlPulsar);
     btn_listo.addEventListener("click", funCllbkAlPulsar_Dos);
 
     btn_listo_dos.value = "Pulsa otra vez";
-    btn_listo_dos.addEventListener("click", funCllbkAlPulsar);
+    // btn_listo_dos.addEventListener("click", funCllbkAlPulsar);
     btn_listo_dos.addEventListener("click", funCllbkAlPulsar_Dos);
 
-    function funCllbkAlPulsar(evento) {
-      let infor;
-      let input;
-      let btn = evento.currentTarget;
-      switch (evento.currentTarget.id) {
-        case "btn_listo":
-          infor = document.getElementById("infor_evento");
-          input = document.getElementById("input_listo");
-          break;
-        case "btn_listo_dos":
-          infor = document.getElementById("infor_evento_dos");
-          input = document.getElementById("input_listo_dos");
-      }
-      btn.removeEventListener("click", funCllbkAlPulsar);
-      input.value = "Tipo evento: " + evento.type;
-      btn.value = "Puedes repetir";
-      infor.innerHTML = "evento.currentTarget.id = " + evento.currentTarget.id;
-      infor.className = "div-marco";
-    }
+    // function funCllbkAlPulsar(evento) {
+    //   let btn = evento.currentTarget;
+    //   let input = document.getElementsByClassName(btn.className)[0];
+    //   let infor = document.getElementsByClassName(btn.className)[2];
+
+    //   // switch (evento.currentTarget.id) {
+    //   //   case "btn_listo":
+    //   //     infor = document.getElementById("infor_evento");
+    //   //     input = document.getElementById("input_listo");
+    //   //     break;
+    //   //   case "btn_listo_dos":
+    //   //     infor = document.getElementById("infor_evento_dos");
+    //   //     input = document.getElementById("input_listo_dos");
+    //   // }
+
+    //   btn.removeEventListener("click", funCllbkAlPulsar);
+    //   input.value = "Tipo evento: " + evento.type;
+    //   btn.value = "Puedes repetir";
+    //   infor.innerHTML = "evento.currentTarget.id = " + evento.currentTarget.id;
+    //   infor.className = "div-marco";
+    // }
 
     function funCllbkAlPulsar_Dos() {
       document.getElementsByTagName("body")[0].className = "fondo-body";
     }
+
+    // Con objeto
+    class GestorEv {
+      
+      constructor(input, btn, div) {
+        this.input = input;
+        this.btn = btn;
+        this.div = div;
+        this.btn.addEventListener("click", this.funCllbkAlPulsar /* .bind(this) */); // si no fuese landa
+      }
+
+      funCllbkAlPulsar = (evento) => {
+        this.btn.removeEventListener("click", this.funCllbkAlPulsar);
+        this.input.value = "Tipo evento: " + evento.type;
+        this.btn.value = "Puedes repetir";
+        this.div.innerHTML = "evento.currentTarget.id = " + evento.currentTarget.id;
+        this.div.className = "div-marco";
+      }
+    }
+
+    let ge = new GestorEv(
+      document.getElementById("input_listo"),
+      document.getElementById("btn_listo"),
+      document.getElementById("infor_evento")
+    )
+
+    let ge2 = new GestorEv(
+      document.getElementById("input_listo_dos"),
+      document.getElementById("btn_listo_dos"),
+      document.getElementById("infor_evento_dos")
+    )
+
+    // Sin no hacemos this.btn = btn no podríamos acceder al boton aquí
+    console.log(ge2.btn);
   </script>
   <style>
     .div-marco {
