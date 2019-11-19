@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <label>Evento con listener: </label>
+  <input id="input_listo" size="100" />
+  <input id="btn_listo" type="button" />
+  <div id="infor_evento"></div>
+  <br />
+  <br />
+  <label>Otro evento con listener: </label>
+  <input id="input_listo_dos" size="100" />
+  <input id="btn_listo_dos" type="button" />
+  <div id="infor_evento_dos"></div>
+  <br />
+  <script>
+    btn_listo.value = "Pulsa, listillo/a";
+    // Forma standard de capturar un evento
+    btn_listo.addEventListener("click", funCllbkAlPulsar);
+    btn_listo.addEventListener("click", funCllbkAlPulsar_Dos);
+
+    btn_listo_dos.value = "Pulsa otra vez";
+    btn_listo_dos.addEventListener("click", funCllbkAlPulsar);
+    btn_listo_dos.addEventListener("click", funCllbkAlPulsar_Dos);
+
+    function funCllbkAlPulsar(evento) {
+      let infor;
+      let input;
+      let btn = evento.currentTarget;
+      switch (evento.currentTarget.id) {
+        case "btn_listo":
+          infor = document.getElementById("infor_evento");
+          input = document.getElementById("input_listo");
+          break;
+        case "btn_listo_dos":
+          infor = document.getElementById("infor_evento_dos");
+          input = document.getElementById("input_listo_dos");
+      }
+      btn.removeEventListener("click", funCllbkAlPulsar);
+      input.value = "Tipo evento: " + evento.type;
+      btn.value = "Puedes repetir";
+      infor.innerHTML = "evento.currentTarget.id = " + evento.currentTarget.id;
+      infor.className = "div-marco";
+    }
+
+    function funCllbkAlPulsar_Dos() {
+      document.getElementsByTagName("body")[0].className = "fondo-body";
+    }
+  </script>
+  <style>
+    .div-marco {
+      border: blue solid;
+      background-color: lightgray;
+    }
+
+    .fondo-body {
+      background-color: lightgreen;
+    }
+  </style>
+</body>
+
+</html>
