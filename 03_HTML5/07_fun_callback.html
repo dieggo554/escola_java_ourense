@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="contenido">
+  </div>
+  <!-- El orden es importante, el último depende de los anteriores -->
+  <!-- Podría ser librería externa -->
+  <script src="js/07_usa_callback.js"></script>
+  <!-- Funciones que modifican el comportamiento de la librería externa -->
+  <script src="js/07_fun_callback.js"></script>
+  <!-- Se encarga de utilizar la librería externa con los comportamientos
+    propios (se definieron en las funciones callback) -->
+  <script src="js/07_ejecuta_todo_cllbk.js"></script>
+</body>
+
+</html>
