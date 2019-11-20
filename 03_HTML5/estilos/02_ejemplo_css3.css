@@ -59,6 +59,11 @@ a:hover {
 .articulo {
   border: solid black;
 }
+.enlace-articulo {
+  padding: 1em;
+  margin: 1em;
+  background-color: antiquewhite;
+}
 /* Media queries, condicion para seleccionar qué estilos se aplican a qué dispositivos */
 @media screen and (max-width: 992px) {
   article section {
