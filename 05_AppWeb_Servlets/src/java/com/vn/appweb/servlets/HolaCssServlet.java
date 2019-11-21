@@ -19,8 +19,8 @@ public class HolaCssServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("text/css");
-
+        response.setContentType("text/css;charset=UTF-8");
+        
         try (PrintWriter salida = response.getWriter()) {
             salida.print(".color-rojo { color:red; } ");
             for (int i = 0; i < 10; i++) {
