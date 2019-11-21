@@ -7,7 +7,13 @@ package com.vn.appweb.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -59,8 +65,8 @@ public class ParamServlet extends HttpServlet {
     /**
      * Handles the HTTP <code>POST</code> method.
      *
-     * @param request servlet request
-     * @param response servlet response
+     * @param peticionHttp
+     * @param respuestaHttp
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
@@ -88,6 +94,35 @@ public class ParamServlet extends HttpServlet {
                 out.println("<p style='color: green;'>Nombre: " + valorNombre.toUpperCase() + "</p>");
                 out.println("<p style='color: green;'>Email: " + valorEmail.toLowerCase() + "</p>");
             }
+
+            // Vamos a insertar los datos recibidos
+            // jdbc:derby://localhost:1527/db_prueba
+            try {
+                Class.forName("org.apache.derby.jdbc.ClientDriver");
+                DriverManager.registerDriver(new org.apache.derby.jdbc.EmbeddedDriver());
+            } catch (Exception ex) {
+                Logger.getLogger(ParamServlet.class.getName()).log(Level.SEVERE, null, ex);
+                out.println("<p style='color: red'>No se ha cargado DerbyDB</p>");
+            }
+
+            try (Connection con = DriverManager.getConnection(
+                    "jdbc:derby://localhost:1527/db_prueba",
+                    "root",
+                    "1234")) {
+                
+                String sqlQuery = "INSERT INTO PERSONA (NOMBRE,EMAIL) VALUES ('" 
+                        + valorNombre + "','" 
+                        + valorEmail + "')";
+                Statement sentanciaSQL = con.createStatement();
+                sentanciaSQL.executeUpdate(sqlQuery);
+                
+                out.println("<p style='color: green'>Registro añadido</p>");
+                
+            } catch (SQLException ex) {
+                Logger.getLogger(ParamServlet.class.getName()).log(Level.SEVERE, null, ex);
+                out.println("<p style='color: red'>Error SQL: " + ex.getMessage() + "</p>");
+            }
+
             out.println("</body>");
             out.println("</html>");
         }
