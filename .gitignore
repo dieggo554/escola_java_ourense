@@ -33,3 +33,11 @@ nbdist/
 .nb-gradle/
 
 #TODO: Ficheros de Ecplise, de VSCode...
+
+#Documentacion de libreria DerbyDB
+05_AppWeb_Servlets/lib/db-derby-10.14.2.0-bin/docs
+05_AppWeb_Servlets/lib/db-derby-10.14.2.0-bin/javadoc
+05_AppWeb_Servlets/lib/db-derby-10.14.2.0-bin/test
+05_AppWeb_Servlets/lib/db-derby-10.14.2.0-bin/index.html
+05_AppWeb_Servlets/lib/db-derby-10.14.2.0-bin/bin
+05_AppWeb_Servlets/lib/db-derby-10.14.2.0-bin/demo
