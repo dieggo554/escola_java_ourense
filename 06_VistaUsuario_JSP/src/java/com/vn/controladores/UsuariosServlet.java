@@ -58,13 +58,11 @@ public class UsuariosServlet extends HttpServlet {
                 if (usuario != null && usuario.getId() > 0) {
                     request.getRequestDispatcher("registrado.jsp")
                             .forward(request, response);
-                } else {
-                    response.getWriter().println("Error al crear");
                 }
             }
         } catch (Exception ex) {
             Logger.getLogger(UsuariosServlet.class.getName()).log(Level.SEVERE, null, ex);
-            response.getWriter().println("ERROR al crear");
+            response.getWriter().println("Error al crear, la petición debe ser POST");
         }
     }
 
