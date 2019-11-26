@@ -6,6 +6,7 @@
 package com.vn.controladores;
 
 import com.vn.POJOs.Usuario;
+import com.vn.servicio.ChivatoServicios;
 import com.vn.servicio.UsuarioServicio;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -33,15 +34,27 @@ public class UsuariosServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String nombre = request.getParameter("nombre");
         String edad = request.getParameter("edad");
-        
+
+        UsuarioServicio serv = new UsuarioServicio();
+        serv.setChivatoListener(new ChivatoServicios() {
+            @Override
+            public void mostrarError(String cadena) {
+                try {
+                    response.getWriter().println("ERROR al crear:" + cadena);
+                } catch (IOException ex) {
+                    Logger.getLogger(UsuariosServlet.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+
         try {
             if (request.getMethod() == "POST") {
-                Usuario usuario = UsuarioServicio.crear(edad, nombre, email, password);
+                Usuario usuario = serv.crear(edad, nombre, email, password);
                 if (usuario != null && usuario.getId() > 0) {
                     request.getRequestDispatcher("registrado.jsp")
                             .forward(request, response);
