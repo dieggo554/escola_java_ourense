@@ -10,6 +10,19 @@
     <body>
         <%@include file="header.jsp" %>
         <h1>Formulario JSP de registro</h1> 
+
+        <%
+            // Tenemos el objeto request por que hemos hecho .forward(...)
+            Object mensajeDeError = request.getSession().getAttribute("mensajeError");
+            if (mensajeDeError != null) {
+        %>
+        <p style="color:red;"><%= (String) mensajeDeError%></p>
+        <%
+            // Borramos el mensaje de error
+            request.getSession().removeAttribute("mensajeError");
+        }
+        %>
+
         <form name="form1" action="usuarios.do" method="POST">
 
             <table border="1">

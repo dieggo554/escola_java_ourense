@@ -41,15 +41,9 @@ public class UsuariosServlet extends HttpServlet {
         String edad = request.getParameter("edad");
 
         UsuarioServicio serv = new UsuarioServicio();
-        serv.setChivatoListener(new ChivatoServicios() {
-            @Override
-            public void mostrarError(String cadena) {
-                try {
-                    response.getWriter().println("ERROR al crear:" + cadena);
-                } catch (IOException ex) {
-                    Logger.getLogger(UsuariosServlet.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
+        serv.setChivatoListener((String cadena) -> {
+            // Guardamos el error en la Sesion
+            request.getSession().setAttribute("mensajeError", "ERROR: " + cadena);
         });
 
         try {
@@ -57,6 +51,10 @@ public class UsuariosServlet extends HttpServlet {
                 Usuario usuario = serv.crear(edad, nombre, email, password);
                 if (usuario != null && usuario.getId() > 0) {
                     request.getRequestDispatcher("registrado.jsp")
+                            .forward(request, response);
+                } else {
+                    // Redirigimos al propio formulario tras añadir error a sesion
+                    request.getRequestDispatcher("registrarse.jsp")
                             .forward(request, response);
                 }
             }
