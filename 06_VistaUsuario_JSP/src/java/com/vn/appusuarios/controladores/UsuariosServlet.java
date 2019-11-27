@@ -6,8 +6,8 @@
 package com.vn.appusuarios.controladores;
 
 import com.vn.appusuarios.modelo.Usuario;
-import com.vn.appusuarios.logica.ChivatoServicios;
-import com.vn.appusuarios.logica.ServicioUsuarios;
+import com.vn.appusuarios.modelo.logica.ChivatoServicios;
+import com.vn.appusuarios.modelo.logica.ServicioUsuarios;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
