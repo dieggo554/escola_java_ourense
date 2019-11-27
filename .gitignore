@@ -32,7 +32,7 @@ dist/
 nbdist/
 .nb-gradle/
 
-#TODO: Ficheros de Ecplise, de VSCode...
+#TODO: VSCode...
 
 #Documentacion de libreria DerbyDB
 05_AppWeb_Servlets/lib/db-derby-10.14.2.0-bin/docs
@@ -41,5 +41,9 @@ nbdist/
 05_AppWeb_Servlets/lib/db-derby-10.14.2.0-bin/index.html
 05_AppWeb_Servlets/lib/db-derby-10.14.2.0-bin/bin
 05_AppWeb_Servlets/lib/db-derby-10.14.2.0-bin/demo
+
+#Ficheros de Ecplise
 /.metadata/
+
 /07_MVN_ModeloUsuario/target/
+/derby_bbdd
