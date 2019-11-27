@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.vn.controladores;
+package com.vn.appusuarios.controladores;
 
-import com.vn.POJOs.Usuario;
-import com.vn.servicio.ChivatoServicios;
-import com.vn.servicio.UsuarioServicio;
+import com.vn.appusuarios.modelo.Usuario;
+import com.vn.appusuarios.logica.ChivatoServicios;
+import com.vn.appusuarios.logica.ServicioUsuarios;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
@@ -40,7 +40,7 @@ public class UsuariosServlet extends HttpServlet {
         String nombre = request.getParameter("nombre");
         String edad = request.getParameter("edad");
 
-        UsuarioServicio serv = new UsuarioServicio();
+        ServicioUsuarios serv = new ServicioUsuarios();
         serv.setChivatoListener((String cadena) -> {
             // Guardamos el error en la Sesion
             request.getSession().setAttribute("mensajeError", "ERROR: " + cadena);
@@ -50,6 +50,8 @@ public class UsuariosServlet extends HttpServlet {
             if (request.getMethod() == "POST") {
                 Usuario usuario = serv.crear(edad, nombre, email, password);
                 if (usuario != null && usuario.getId() > 0) {
+                    request.getSession()
+                            .setAttribute("emailUsuario", usuario.getEmail());
                     request.getRequestDispatcher("registrado.jsp")
                             .forward(request, response);
                 } else {
@@ -60,7 +62,7 @@ public class UsuariosServlet extends HttpServlet {
             }
         } catch (Exception ex) {
             Logger.getLogger(UsuariosServlet.class.getName()).log(Level.SEVERE, null, ex);
-            response.getWriter().println("Error al crear, la petición debe ser POST");
+            response.getWriter().println("Error al crear, la petición debe ser POST:" + ex.getMessage());
         }
     }
 
