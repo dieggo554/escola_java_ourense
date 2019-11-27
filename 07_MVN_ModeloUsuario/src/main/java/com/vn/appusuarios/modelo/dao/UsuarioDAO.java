@@ -24,9 +24,9 @@ public class UsuarioDAO implements IDaoUsuario {
 
     @Override
     public Usuario obtenerPorEmail(String email) throws Exception {
-        try (Connection con = ConexionDerby.getConexion()) {
+        try (Connection con = ConexionMySQL.getConexion()) {
             Usuario nuevo = null;
-            String sqlQuery = "SELECT ID, EMAIL, PASSWORD, NOMBRE, AGE FROM Usuario WHERE EMAIL=?";
+            String sqlQuery = "SELECT ID, EMAIL, PASSWORD, NOMBRE, AGE FROM usuario WHERE EMAIL=?";
             PreparedStatement sentenciaSQL = con.prepareStatement(sqlQuery);
             sentenciaSQL.setString(1, email);
             ResultSet resultado = sentenciaSQL.executeQuery();
@@ -44,8 +44,8 @@ public class UsuarioDAO implements IDaoUsuario {
 
     @Override
     public Usuario modificar(int id, String email, String password, String nombre, int age) throws Exception {
-        try (Connection con = ConexionDerby.getConexion()) {
-            String sqlQuery = "UPDATE Usuario "
+        try (Connection con = ConexionMySQL.getConexion()) {
+            String sqlQuery = "UPDATE usuario "
                     + "SET EMAIL=?, PASSWORD=?, NOMBRE=?, AGE=? "
                     + "WHERE ID = ?";
             PreparedStatement sentenciaSQL = con.prepareStatement(sqlQuery);
@@ -69,8 +69,8 @@ public class UsuarioDAO implements IDaoUsuario {
 
     @Override
     public Usuario crear(Usuario objetoNuevo) throws Exception {
-        try (Connection con = ConexionDerby.getConexion()) {
-            String sqlQuery = "INSERT INTO Usuario(EMAIL, PASSWORD, NOMBRE, AGE) VALUES (?,?,?,?)";
+        try (Connection con = ConexionMySQL.getConexion()) {
+            String sqlQuery = "INSERT INTO usuario(EMAIL, PASSWORD, NOMBRE, AGE) VALUES (?,?,?,?)";
             PreparedStatement sentenciaSQL = con.prepareStatement(sqlQuery);
             sentenciaSQL.setString(1, objetoNuevo.getEmail());
             sentenciaSQL.setString(2, objetoNuevo.getPassword());
@@ -85,9 +85,9 @@ public class UsuarioDAO implements IDaoUsuario {
 
     @Override
     public HashMap<Integer, Usuario> obtenerTodos() throws Exception {
-        try (Connection con = ConexionDerby.getConexion()) {
+        try (Connection con = ConexionMySQL.getConexion()) {
             HashMap hashUsuarios = new HashMap();
-            String sqlQuery = "SELECT ID, EMAIL, PASSWORD, NOMBRE, AGE FROM USUARIO";
+            String sqlQuery = "SELECT ID, EMAIL, PASSWORD, NOMBRE, AGE FROM usuario";
             PreparedStatement sentenciaSQL = con.prepareStatement(sqlQuery);
             ResultSet resultado = sentenciaSQL.executeQuery();
             while (resultado.next()) {
@@ -105,10 +105,10 @@ public class UsuarioDAO implements IDaoUsuario {
 
     @Override
     public Usuario obtenerPorIndice(int index) throws Exception {
-        try (Connection con = ConexionDerby.getConexion()) {
+        try (Connection con = ConexionMySQL.getConexion()) {
             Usuario nuevo = null;
             String id = ((Integer) index).toString();
-            String sqlQuery = "SELECT ID, EMAIL, PASSWORD, NOMBRE, AGE FROM Usuario WHERE ID=?";
+            String sqlQuery = "SELECT ID, EMAIL, PASSWORD, NOMBRE, AGE FROM usuario WHERE ID=?";
             PreparedStatement sentenciaSQL = con.prepareStatement(sqlQuery);
             sentenciaSQL.setString(1, id);
             ResultSet resultado = sentenciaSQL.executeQuery();
@@ -126,8 +126,8 @@ public class UsuarioDAO implements IDaoUsuario {
     @Override
     public Usuario modificar(Usuario objConDatosNuevo) throws Exception {
 
-        try (Connection con = ConexionDerby.getConexion()) {
-            String sqlQuery = "UPDATE Usuario "
+        try (Connection con = ConexionMySQL.getConexion()) {
+            String sqlQuery = "UPDATE usuario "
                     + "SET EMAIL=?, PASSWORD=?, NOMBRE=?, AGE=? "
                     + "WHERE ID = ?";
             PreparedStatement sentenciaSQL = con.prepareStatement(sqlQuery);
@@ -146,10 +146,10 @@ public class UsuarioDAO implements IDaoUsuario {
 
     @Override
     public boolean eliminar(int index) throws Exception {
-        try (Connection con = ConexionDerby.getConexion()) {
+        try (Connection con = ConexionMySQL.getConexion()) {
             boolean eliminado = false;
             String id = ((Integer) index).toString();
-            String sqlQuery = "DELETE FROM Usuario WHERE ID=?";
+            String sqlQuery = "DELETE FROM usuario WHERE ID=?";
             PreparedStatement sentenciaSQL = con.prepareStatement(sqlQuery);
             sentenciaSQL.setString(1, id);
             sentenciaSQL.executeUpdate();
@@ -160,11 +160,11 @@ public class UsuarioDAO implements IDaoUsuario {
 
     @Override
     public HashMap<Integer, Usuario> obtenerTodos(String nombre) throws Exception {
-        try (Connection con = ConexionDerby.getConexion()) {
+        try (Connection con = ConexionMySQL.getConexion()) {
             HashMap hashUsuarios = new HashMap();
 
             if (nombre != "") {
-                String sqlQuery = "SELECT ID, EMAIL, PASSWORD, NOMBRE, AGE FROM Usuario WHERE NOMBRE=?";
+                String sqlQuery = "SELECT ID, EMAIL, PASSWORD, NOMBRE, AGE FROM usuario WHERE NOMBRE=?";
                 PreparedStatement sentenciaSQL = con.prepareStatement(sqlQuery);
                 sentenciaSQL.setString(1, nombre);
                 ResultSet resultado = sentenciaSQL.executeQuery();
