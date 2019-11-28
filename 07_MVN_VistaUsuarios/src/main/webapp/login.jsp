@@ -13,7 +13,7 @@
         <form name="form1">
             <table border="1">
                <tr><td>Email</td><td> </td></tr> 
-                <tr><td>ContraseÃ±a</td><td>  </td></tr> 
+                <tr><td>Contraseña</td><td>  </td></tr> 
             </table>
             <input type="submit" value=""/>
         </form>
