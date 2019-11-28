@@ -3,6 +3,7 @@
     Created on : 21-feb-2019, 23:21:10
     Author     : IEUser
 --%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page import="com.vn.appusuarios.modelo.Usuario"%>
 <%@page import="com.vn.appusuarios.modelo.logica.ServicioUsuarios"%>
 <%@include file="head.jsp"%>
@@ -24,10 +25,11 @@
 	<h2 style="color: green;">
 		<!-- Dentro del codigo Java tenemos el objeto session -->
 		ID:
-		<%=usuario.getId()%>
+		<c:out value="${usuario.id}"></c:out>
+		<%-- 		<%=usuario.getId()%> --%>
 		<br /> Nombre:
-		<%=usuario.getNombre()%>
-
+		<%-- 		<%=usuario.getNombre()%> --%>
+		<c:out value="${usuario.nombre}"></c:out>
 	</h2>
 </body>
 </html>

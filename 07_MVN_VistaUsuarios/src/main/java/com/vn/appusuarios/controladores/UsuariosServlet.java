@@ -69,6 +69,10 @@ public class UsuariosServlet extends HttpServlet {
 					// Redirigimos al propio formulario tras aÃ±adir error a sesion
 					request.getRequestDispatcher("registrarse.jsp").forward(request, response);
 				}
+			} else if (request.getMethod() == "GET") {
+				Usuario usuario = serv.leer(email);
+				// Habría que comprobar la password
+				request.getSession().setAttribute("usuario", usuario);
 			}
 		} catch (Exception ex) {
 			Logger.getLogger(UsuariosServlet.class.getName()).log(Level.SEVERE, null, ex);

@@ -3,6 +3,7 @@
     Created on : 21-feb-2019, 20:42:40
     Author     : IEUser
 --%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@include file="head.jsp"%>
 <html>
 <%=head()%>

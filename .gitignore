@@ -47,3 +47,5 @@ nbdist/
 
 /07_MVN_ModeloUsuario/target/
 /derby_bbdd
+/07_MVN_ModeloUsuario/.settings
+/07_MVN_VistaUsuarios/.settings
