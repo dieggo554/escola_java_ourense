@@ -8,7 +8,6 @@
 <%@include file="head.jsp"%>
 <%
 	// ServicioUsuarios servicioU = (ServicioUsuarios) request.getAttribute("servicioUsu");
-	Usuario usuario = (Usuario) session.getAttribute("usuario");
 %>
 <html>
 <body>

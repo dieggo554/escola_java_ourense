@@ -26,14 +26,14 @@
 		%>
 
 		<form action="usuarios.do" method="post" name="form">
-			<input id="id" name="id" type="text" size="4" readonly="true"
+			<input id="id" name="id" type="text" size="4" readonly="readonly"
 				value="<%= usu.getId() %>" /> <input id="nombre" name="nombre" type="text"
-				required="true" value="<%= usu.getNombre() %>" /> <input id="edad" name="edad"
-				type="number" required="true" size="4" value="<%= usu.getEdad() %>" /> <input
-				id="email" name="email" type="email" required="true" value="<%= usu.getEmail() %>" /> <input
-				id="password" name="password" type="password" required="true"
+				required="required" value="<%= usu.getNombre() %>" /> <input id="edad" name="edad"
+				type="number" required="required" size="4" value="<%= usu.getEdad() %>" /> <input
+				id="email" name="email" type="email" required="required" value="<%= usu.getEmail() %>" /> <input
+				id="password" name="password" type="password" required="required"
 				value="<%= usu.getPassword() %>" /> <input class="method" id="method" name="method"
-				type="text" size="4" readonly="true" value="PUT" /> <input
+				type="text" size="4" readonly="readonly" value="PUT" /> <input
 				type="submit" value="EDIT"
 				onclick="Array.from(document.getElementsByClassName('method')).forEach((thisInput) => { thisInput.value='PUT'; })" />
 			<input type="submit" value="ELIM"

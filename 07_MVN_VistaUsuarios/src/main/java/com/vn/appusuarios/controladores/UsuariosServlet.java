@@ -61,9 +61,9 @@ public class UsuariosServlet extends HttpServlet {
 
 		try {
 			if (request.getMethod() == "POST") {
-				Usuario usuario = serv.crear(edad, nombre, email, password);
-				if (usuario != null && usuario.getId() > 0) {
-					request.getSession().setAttribute("usuario", usuario);
+				Usuario usu = serv.crear(edad, nombre, email, password);
+				if (usu != null && usu.getId() > 0) {
+					request.getSession().setAttribute("usuario", usu);
 					request.getRequestDispatcher("registrado.jsp").forward(request, response);
 				} else {
 					// Redirigimos al propio formulario tras añadir error a sesion

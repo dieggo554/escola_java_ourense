@@ -6,7 +6,6 @@
 <%@include file="head.jsp"%>
 <html>
 <%=head()%>
-<%@include file="header.jsp"%>
 <body>
 	<%@include file="header.jsp"%>
 	<h1>Página de inicio</h1>
