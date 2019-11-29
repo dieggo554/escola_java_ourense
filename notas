@@ -1,0 +1,98 @@
+Para que un POJO de Java sea un BEAN es necesario:
+-Que implemente serializable
+-Que tenga un contructor por defecto(vacío)
+
+*Etiquetas JPA, patrón decorator, .yml/.properties, programatica vs declarativa,
+angular docs: tour of hero
+
+
+--- SPA -> imita -> RIA (Rich Interface App) Single Page Application ---
+
+- UI + lógica clientes
+- Un único HTML con todos los css y todo el JavaScript
+- Conexión con el servidor mediante
+	R.P.C. (Remote Procedure Call)
+	R.M.I.
+		Solo Java
+	S.O.A.P. (Simple Object Access Protocol)
+		Se creó luego de RMI
+		Usa XML
+		Es agnostico al lenguaje
+		Es necesario mantener el ESTADO
+	R.E.S.T. (Representational State Transfer)
+		Usa JSON
+		Tendencia
+		Sin estado
+- No es necesaria conexión constante
+- Persistencia de datos en el navegador
+	Cookies
+	WebStorage (JS)
+	WebSQLite 
+		Deprecated
+	IndexedDB
+		Usado actualmente por los navegadores
+		
+- Frameworks de desarrollo rápido de aplicaciones
+	Angular
+	Spring
+
+
+-- Angular --
+
+-AngularJS (Angular 1.X)
+
+	"ng-"
+
+	<div ng-app="" ng-init="firstName='John'">
+	<p>Name: <input type="text" ng-model="fistName"></p>
+	<p>You wrote: {{ firstName }}</p>
+	// Se actualiza el cambio simultaneamente (letra a letra)
+	// en el input y en el HTML
+	
+	Controladores
+		Clases JS con un modelo
+		Es necesario programarlo
+		Vincula el modelo con el HTML
+		Se puede crear mas de uno en una página
+			Cada uno tiene su propia instancia
+	Gestión DOM
+	MVVM
+		En el MVC Angular se encarga del Controladores
+		solo debemos programar la vista y el modelo
+	Directivas
+		Definir con declaraciones cosas que tendrías que
+		programar
+	No obliga a estructurar la aplicación correctamente
+	
+-Angular 2/2+
+
+	Arquitectura basada en componentes
+	
+	Componente
+		Tornillo = pieza != componente
+		Parte de un todo con funcionalidades en concreto
+		Procuran ser autónomos
+		Componentes con gerarquias/dependencias
+		Intercambiables
+		
+	--< Plantilla
+	|		HTML propio
+	|		DOM propio
+	|	Metadatos -> configuracion mediante decoradores(@)
+	--> ClaseJS/Componente
+	|		Modelo -> Vista
+	|	
+	|Event binding (eventos): ()
+			<input type="button" value="Crear" (click) = "crearCuenta()"/>
+		Inverso: Data binding (datos): {{ ... }} o para campos [] 
+		Juntos: Double binding (MVVM)
+		
+		LOGICA -> Servicios != UI
+
+
+
+
+
+
+
+
