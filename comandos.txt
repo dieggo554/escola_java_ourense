@@ -1,0 +1,16 @@
+# Contraseña
+@Object00
+
+# Añadir usuario a grupo de VBox
+sudo adduser german vboxsf
+
+# Listar contenedores levantados
+sudo docker ps
+
+# El comando run ejecuta, pero si no tiene el
+contenedor descargado, lo descarga del repo:
+# -d No muestra salida por consola
+# -p Configuramos los puertos Salida:Interno
+# -e Establece una variable de entorno
+# Al final indicamos el contenedor:versión
+sudo docker run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=abc123. mysql:8.0.16
