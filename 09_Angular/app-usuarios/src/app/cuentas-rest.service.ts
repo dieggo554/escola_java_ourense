@@ -9,6 +9,8 @@ import { CuentaBanc } from './modelo/CuentaBanc';
 })
 export class CuentasRestService {
 
+  alCambiar: any;
+
   // Infiere el tipo a partir del valor ("" es String)
   urlApiRest = "http://localhost:8080/cuentas";
   httpOptions = {
@@ -19,19 +21,35 @@ export class CuentasRestService {
 
   constructor(private httpCli: HttpClient) { }
 
-  public add(nuevaCuenta: CuentaBanc): Observable<CuentaBanc> {
-    return this.httpCli.post<CuentaBanc>(this.urlApiRest, nuevaCuenta, this.httpOptions);
+  public add(nuevaCuenta: CuentaBanc, lambda: any): Observable<CuentaBanc> {
+    let observable: Observable<CuentaBanc> = this.httpCli.post<CuentaBanc>(this.urlApiRest,
+      nuevaCuenta, this.httpOptions);
+      observable.subscribe((datos) => { // Datos de la cuanta con el ID
+        this.alCambiar(datos);          // Probablemente actualiza la lista
+        lambda(datos);                  // Invoca a la suscripcion del componente nuevo
+      });
+    return observable;
   }
 
   public traerTodos(): Observable<CuentaBanc[]> {
     return this.httpCli.get<CuentaBanc[]>(this.urlApiRest);
   }
 
-  public modificar(id: Number, nuevaCuenta: CuentaBanc): Observable<CuentaBanc> {
-    return this.httpCli.put<CuentaBanc>(this.urlApiRest + "/" + id, nuevaCuenta, this.httpOptions);
+  public modificar(id: Number, nuevaCuenta: CuentaBanc, lambda: any): Observable<CuentaBanc> {
+    let observable: Observable<CuentaBanc> = this.httpCli.put<CuentaBanc>(this.urlApiRest  + "/" + id,
+      nuevaCuenta, this.httpOptions);
+      observable.subscribe((datos) => { // Datos de la cuanta con el ID
+        this.alCambiar(datos);          // Probablemente actualiza la lista
+        lambda(datos);                  // Invoca a la suscripcion del componente nuevo
+      });
+    return observable;
   }
 
-  public eliminar(id: Number): Observable<void> {
-    return this.httpCli.delete<void>(this.urlApiRest + "/" + id);
+  public eliminar(id: Number) {
+    this.httpCli.delete<void>(this.urlApiRest + "/" + id, this.httpOptions).subscribe(
+      (datos) => {
+        this.alCambiar(datos); 
+        console.log("Eliminado " + id);
+      });
   }
 }

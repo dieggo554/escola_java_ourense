@@ -10,8 +10,21 @@
     <td>{{ cuenta.id }}</td>
     <td>{{ cuenta.iban }}</td>
     <td>{{ cuenta.dni }}</td>
-    <td><input id="bntMod{{cuenta.id}}" type="button" value="Modificar" (click) = "modificarCuenta(cuenta.id)"/></td>
-    <td><input id="bntDel{{cuenta.id}}" type="button" value="Eliminar" (click) = "eliminarCuenta(cuenta.id)"/></td>
+    <td><input id="bntDel{{cuenta.id}}" type="button" value="Eliminar" (click)="eliminarCuenta(cuenta.id)" /></td>
+    <td><input id="bntEdit{{cuenta.id}}" type="button" value="Editar" (click)="cuentaEditar = cuenta" /></td>
   </tr>
 </table>
-
+<table *ngIf="cuentaEditar !== null">
+  <tr>
+    <td><input [(ngModel)]="cuentaEditar.id" type="number" readonly="readonly" /></td>
+  </tr>
+  <tr>
+    <td><input [(ngModel)]="cuentaEditar.iban" type="text" /></td>
+  </tr>
+  <tr>
+    <td><input [(ngModel)]="cuentaEditar.dni" type="text" /></td>
+  </tr>
+  <tr>
+    <td><input id="bntDel" type="button" value="Modificar" (click)="modificarCuenta(cuentaEditar.id, cuentaEditar)" /></td>
+  </tr>
+</table>

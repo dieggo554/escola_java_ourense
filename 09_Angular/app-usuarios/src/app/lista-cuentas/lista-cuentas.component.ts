@@ -11,8 +11,13 @@ import { Observable } from 'rxjs';
 export class ListaCuentasComponent implements OnInit {
 
   arrayCuentas: CuentaBanc[];
+  cuentaEditar: CuentaBanc = null;
 
-  constructor(private srvCuentas: CuentasRestService) { }
+  constructor(private srvCuentas : CuentasRestService) { 
+    this.srvCuentas.alCambiar = () => {
+      this.ngOnInit();
+    };
+  }
 
   ngOnInit() {
     this.srvCuentas.traerTodos().subscribe((cuentasTraidas: CuentaBanc[]) => {
@@ -28,11 +33,14 @@ export class ListaCuentasComponent implements OnInit {
   //    console.log("Respuesta AJAX: " + this.arrayCuentas.toString());
   //  }
 
-  eliminarCuenta(id: Number): void {
-    let observador: Observable<void>;
-    observador = this.srvCuentas.eliminar(id);
-    observador.subscribe(() => {
-      console.log("eliminarCuenta realizada");
+  modificarCuenta(id: Number, cuenta: CuentaBanc): void {
+    this.srvCuentas.modificar(id, cuenta, (datos) => {
+      console.log("Modificado "  + datos.toString());
+      this.cuentaEditar = null;
     });
+  }
+
+  eliminarCuenta(id: Number): void {
+    this.srvCuentas.eliminar(id);
   }
 }
